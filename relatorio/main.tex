@@ -125,12 +125,11 @@
 
 \section{Análise de Test Smells e Observações do Repositório}
 
-A inspeção estática e manual da suíte original foi conduzida sobre o serviço de gerenciamento de usuários (\texttt{UserService}). Inicialmente, destacam-se três observações técnicas verificadas no repositório original:
+A inspeção estática e manual da suíte original foi conduzida sobre o serviço de gerenciamento de usuários (\texttt{UserService}). Inicialmente, destacam-se duas observações técnicas verificadas no repositório original:
 
 \begin{enumerate}
     \item \textbf{Estrutura de Diretórios (\texttt{test/} vs. \texttt{\_\_tests\_\_/}):} Embora o roteiro mencione a pasta \texttt{\_\_tests\_\_/}, o repositório original organiza os testes em \texttt{test/userService.smelly.test.js}. Para respeitar a convenção existente no projeto, a suíte refatorada foi criada em \texttt{test/userService.clean.test.js}.
     \item \textbf{Migração para ESLint v9 (\textit{Flat Config}):} A instalação atual via \texttt{npm install --save-dev eslint eslint-plugin-jest} obtém o \textbf{ESLint v9}, que adota o formato \textit{Flat Config} (\texttt{eslint.config.js}) em substituição ao legado \texttt{.eslintrc.json}. Ambos os arquivos foram incluídos no repositório para garantir execução direta com \texttt{npx eslint .}.
-    \item \textbf{Auditoria da Linha 41--42 de \texttt{src/userService.js}:} Na inspeção do método \texttt{deactivateUser}, constatou-se que o comentário \texttt{// Usuário nao encontrado} na linha 41 utiliza a partícula cirílica russa (\texttt{U+043D U+0435}) em vez de ``não'' — tratando-se apenas de um artefato textual sem qualquer vetor de \textit{prompt injection} ou efeito na execução.
 \end{enumerate}
 
 Na análise manual da suíte original (\texttt{test/userService.smelly.test.js}), foram identificados \textbf{cinco Test Smells}, sistematizados na Tabela~\ref{tab:smells}.
